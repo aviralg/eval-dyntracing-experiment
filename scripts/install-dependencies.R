@@ -8,12 +8,16 @@ install_r_dependencies <- function() {
                       "ggplot2", "knitr", "bookdown",
                       "RSQLite", "dbplyr", "DT", "tidyr",
                       "dplyr", "ggsci", "rvest", "httr",
-                      "progress", "htmltidy")
+                      "progress", "htmltidy", "devtools",
+                      "roxygen2", "fs")
 
     dependencies <- setdiff(dependencies, installed.packages())
-
     if (length(dependencies) > 0) {
-        install.packages(dependencies, repos = "http://cran.us.r-project.org")
+        install.packages(dependencies,
+                         repos = "http://cran.us.r-project.org",
+                         INSTALL_opts = c("--with-keep.source",
+                                          "--example",
+                                          "--install-tests"))
     }
 }
 
